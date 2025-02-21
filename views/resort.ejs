@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resorts</title>
+    <link rel="stylesheet" href="home.css">
+    <style>
+           body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+        .sidebar-1 {
+            width: 25%;
+            padding: 30px;
+            margin-top: 80px;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            width: 75%;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        input, select {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            background-color: #212121;
+            border-radius: 5px;
+            color: white;
+        }
+        .place-card, .resort-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px auto;
+            width: 80%;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: white;
+  text-shadow: none;
+  background: #DD3142;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: none;
+  transition: 0.5s ease;
+  user-select: none;
+  margin-bottom: 10px;
+}
+    .resort-card{
+            background-color: #181818;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            font-family: "poppins";
+            font-weight: 100;
+        }
+        .resort-card img{
+            height: 300px;
+            width: 350px;
+        }
+        .resort-card h3{
+            font-weight: 100;
+        }
+        .resort-card span{
+            font-weight: 300;
+        }
+        input:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;}
+        @media(max-width: 800px){
+            .resort-card img{
+            height: 300px;
+            width: 200px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="sidebar">
+          <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/travel">Travel</a></li>
+          <li><a href="/food">Food</a></li>
+          <li><a href="/resort">Resort</a></li>
+          <li><a href="/login">Logout</a></li>
+        </ul>
+        <ul>
+          <li><a href="#"><img src="/images/logo.png" style="height: 100; width: 170px;"></a></li>
+          <li class="hideOnMobile"><a href="/home">Home</a></li>
+          <li class="hideOnMobile"><a href="/travel">Travel</a></li>
+          <li class="hideOnMobile"><a href="/food">Food </a></li>
+          <li class="hideOnMobile"><a href="/resort">Resort</a></li>
+          <li class="hideOnMobile" ><a href="/login" style="background-color:#DD3142; border-radius: 50px; height: 30px; width:40px; margin-top: 10px; margin-right: 10px; color: white;">Logout</a></li>
+          <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-1">
+        <h2>Filter</h2>
+        <input type="text" id="searchInput" placeholder="Enter a state name (e.g., Kerala, Rajasthan)" />
+        <button onclick="searchPlaces()">Search</button>
+        <h3>Price Filter</h3>
+        <select id="priceFilter" onchange="filterResorts()">
+            <option value="all">All</option>
+            <option value="low">Low Price</option>
+            <option value="medium">Medium Price</option>
+            <option value="high">High Price</option>
+        </select>
+    </div>
+    <div class="main-content">
+        <div id="results"></div>
+        <h2 style="margin-top: 80px;">Nearby Resorts</h2>
+        <div id="resorts"></div>
+    </div>
+
+    <script>
+         const placesData = {
+    "kerala": [
+        { "name": "Kerala", "img": "munnar.jpg", "description": "Known for lush tea gardens and misty hills.", "resorts": [
+            { "name": "Tea County", "images": ["resort1.jpg", "resort1-2.jpg"], "price": "high","amount": 50000, "description": "Tea garden view resort with premium facilities.", "rating": 5 },
+            { "name": "Camelot Resort", "img": "resort42.jpg", "price": "medium","amount": 5000, "description": "Affordable resort with nature surroundings.", "rating": 4 }
+        ]}
+    ],
+    "delhi": [
+        { "name": "Delhi", "img": "/images/resorts/delhi.jpg", "description": "Capital of India, rich history, vibrant culture, monuments, metro city.", "resorts": [
+            { "name": "The Suryaa", "images": ["/images/resorts/suriya-1.jpg", "/images/resorts/suriya-2.jpg"], "price": "medium","amount": 12000, "description": "Offering air-conditioned rooms with free Wi-Fi and p", "rating": 5},
+            { "name": "The Imperial","images": ["/images/resorts/imperial-1.jpg", "/images/resorts/imperial-2.jpg"], "price": "high","amount": 150000, "description": " Luxurious 5-star heritage hotel known for its colonial architecture, elegant interiors, and world-class hospitality. It offers premium amenities, fine dining, and a rich historical charm.", "rating": 5 },
+            { "name": "ibis",  "images": ["/images/resorts/iblis-1.jpg", "/images/resorts/iblis-2.jpg"], "price": "medium","amount": 8000, "description": " Ibis Hotel Delhi offers modern budget-friendly accommodations with comfortable rooms, dining and amenities conveniently located near the airport and business hubs.","rating": 4 },
+            { "name": "Hotel City Deluxe", "images": ["/images/resorts/delux-1.jpg", "/images/resorts/delux-2.jpg"], "price": "low","amount": 4000, "description": "Offering air-conditioned rooms with free Wi-Fi and private bathrooms. It's located approximately 20 km from major landmarks like Red Fort and Gurudwara Bangla Sahib. The hotel provides 24-hour room service and daily housekeeping.", "rating": 3 }
+        ]}
+    ]
+        };
+
+        function searchPlaces() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const resultsDiv = document.getElementById("results");
+    const resortsDiv = document.getElementById("resorts");
+    resultsDiv.innerHTML = "";
+    resortsDiv.innerHTML = "";
+
+    if (placesData[query]) {
+        placesData[query].forEach(place => {
+            resultsDiv.innerHTML += `
+                <div class="place-card">
+                    <img src="${place.img}" alt="${place.name}">
+                    <h2>${place.name}</h2>
+                    <p>${place.description}</p>
+                </div>
+            `;
+            place.resorts.forEach(resort => {
+                resortsDiv.innerHTML += `
+                    <div class="resort-card" data-price="${resort.price}">
+                        <img src="${resort.images[0]}" alt="${resort.name} Image 1">
+                        <img src="${resort.images[1]}" alt="${resort.name} Image 2">
+                        <h3>${resort.name}</h3>
+                        <p><span>Description:</span> ${resort.description}</p>
+                        <p><strong>Rate:</strong> ₹${resort.amount.toLocaleString()}</p>
+                        <p><strong>Price:</strong> ${resort.price.charAt(0).toUpperCase() + resort.price.slice(1)}</p>
+                        <p><strong>Rating:</strong> ${"⭐".repeat(resort.rating)}</p>
+                    </div>
+                `;
+            });
+        });
+    } else {
+        resultsDiv.innerHTML = "<p>No results found. Try another state!</p>";
+    }
+}
+
+function filterResorts() {
+    const filterValue = document.getElementById("priceFilter").value;
+    document.querySelectorAll(".resort-card").forEach(resort => {
+        if (filterValue === "all" || resort.dataset.price === filterValue) {
+            resort.style.display = "block";
+        } else {
+            resort.style.display = "none";
+        }
+    });
+}
+        function showSidebar(){
+          const sidebar = document.querySelector('.sidebar')
+          sidebar.style.display = 'flex'
+        }
+        function hideSidebar(){
+          const sidebar = document.querySelector('.sidebar')
+          sidebar.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

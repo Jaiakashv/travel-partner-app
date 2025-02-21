@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<style>
+     body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        header {
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: white;
+  text-shadow: none;
+  background:#DD3142;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: none;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+        #results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .food-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            max-width: 300px;
+            text-align: center;
+            background-color: #181818;
+            color: white;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        }
+        .food-card h2{
+            margin-bottom: 10px;
+        }
+        .food-card img {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+        }
+        input{
+            background-color: #212121;
+            color: white;
+        }
+       #searchInput:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
+}
+</style>
+<body>
+    <nav>
+        <ul class="sidebar">
+          <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/travel">Travel</a></li>
+          <li><a href="/food">Food</a></li>
+          <li><a href="/resort">Resort</a></li>
+          <li><a href="/login">Logout</a></li>
+        </ul>
+        <ul>
+          <li><a href="#"><img src="/images/logo.png" style="height: 100; width: 170px;"></a></li>
+          <li class="hideOnMobile"><a href="/home">Home</a></li>
+          <li class="hideOnMobile"><a href="/travel">Travel</a></li>
+          <li class="hideOnMobile"><a href="/food">Food </a></li>
+          <li class="hideOnMobile"><a href="/resort">Resort</a></li>
+          <li class="hideOnMobile" ><a href="/login" style="background-color:#DD3142; border-radius: 50px; height: 30px; width:40px; margin-top: 10px; margin-right: 10px; color: white;">Logout</a></li>
+          <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+        </ul>
+      </nav>
+      <header style="padding-top: 200px; background: url('/images/food-bg.png');">
+        <h1 style="color: white;">Best Foods </h1>
+        <input type="text" id="searchInput" placeholder="Search your Favorite City, Food, places..." />
+        <button onclick="searchFood()">Search</button>
+    </header>
+    <div id="results">
+     
+    </div>
+    <script>
+        function searchFood() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ""; //to clear the previous result
+
+            const foodData = {
+             "andhra pradesh": [
+                    { name: "Hyderabadi Biryani", img: "biryani.jpg", description: "Spicy, fragrant rice dish with marinated meat." },
+                    { name: "Gongura Pickle", img: "gongura.jpg", description: "Tangy chutney made from sorrel leaves." }
+                ],
+                "arunachal pradesh": [
+                    { name: "Thukpa", img: "thukpa.jpg", description: "Noodle soup with vegetables or meat." },
+                    { name: "Apong", img: "apong.jpg", description: "Traditional rice beer." }
+                ],
+                "assam": [
+                    { name: "Assam Laksa", img: "assam_laksa.jpg", description: "Spicy and sour fish-based rice noodle soup." },
+                    { name: "Masor Tenga", img: "masor_tenga.jpg", description: "Tangy fish curry with tomatoes." }
+                ],
+                "bihar": [
+                    { name: "Litti Chokha", img: "litti_chokha.jpg", description: "Roasted wheat balls stuffed with spiced gram flour." },
+                    { name: "Thekua", img: "thekua.jpg", description: "Sweet deep-fried wheat cookies." }
+                ],
+                "chhattisgarh": [
+                    { name: "Chana Samosa", img: "chana_samosa.jpg", description: "Spicy chickpea stuffed samosas." },
+                    { name: "Aamat", img: "aamat.jpg", description: "Bamboo shoot curry." }
+                ],
+                "goa": [
+                    { name: "Goan Fish Curry", img: "goan_fish_curry.jpg", description: "Spicy coconut-based fish curry." },
+                    { name: "Bebinca", img: "bebinca.jpg", description: "Layered coconut and egg dessert." }
+                ],
+                "gujarat": [
+                    { name: "Dhokla", img: "dhokla.jpg", description: "Soft fermented chickpea and rice cake." },
+                    { name: "Thepla", img: "thepla.jpg", description: "Spiced flatbread made from wheat and fenugreek." }
+                ],
+                "haryana": [
+                    { name: "Bajra Khichdi", img: "bajra_khichdi.jpg", description: "Nutritious pearl millet porridge." },
+                    { name: "Kadhi Pakora", img: "kadhi_pakora.jpg", description: "Gram flour dumplings in yogurt curry." }
+                ],
+                "himachal pradesh": [
+                    { name: "Dham", img: "dham.jpg", description: "A traditional Himachali feast." },
+                    { name: "Chana Madra", img: "chana_madra.jpg", description: "Chickpeas cooked in yogurt gravy." }
+                ],
+                "jharkhand": [
+                    { name: "Rugra", img: "rugra.jpg", description: "Wild mushrooms cooked with spices." },
+                    { name: "Thekua", img: "thekua.jpg", description: "Sweet fried wheat flour snack." }
+                ],
+                "karnataka": [
+                    { name: "Bisi Bele Bath", img: "bath.jpeg", description: "Spicy rice and lentil dish." },
+                    { name: "Mysore masala dosa", img: "dosa.jpeg", description: "Gram flour and ghee sweet." },
+                    { name: "RAgi mudde", img: "/images/Food/ragi.jpeg", description: " Nutritious finger millet ball, while Dose is a crispy pancake." },
+                    { name: "Mangalorean fish curry", img: "/images/Food/fish.jpeg", description: "Coconut-rich flavors with spicy masala, often using tamarind and kokum for authenticity." }
+                ],
+                "kerala": [
+                    { name: "Puttu and Kadala Curry", img: "puttu.jpg", description: "Steamed rice cakes with black chickpea curry." },
+                    { name: "Appam with Stew", img: "appam.jpg", description: "Thin pancakes served with coconut milk-based stew." }
+                ],
+                "madhya pradesh": [
+                    { name: "Poha", img: "poha.jpg", description: "Flattened rice with spices and peanuts." },
+                    { name: "Bhutte ka Kees", img: "bhutte_ka_kees.jpg", description: "Spiced corn grated and cooked with milk." }
+                ],
+                "maharashtra": [
+                    { name: "Vada Pav", img: "vada_pav.jpg", description: "Spicy potato fritters inside a bun." },
+                    { name: "Puran Poli", img: "puran_poli.jpg", description: "Sweet lentil-stuffed flatbread." }
+                ],
+                "manipur": [
+                    { name: "Eromba", img: "eromba.jpg", description: "Fermented fish chutney with mashed vegetables." },
+                    { name: "Chak-Hao Kheer", img: "chak_hao_kheer.jpg", description: "Purple rice pudding." }
+                ],
+                "meghalaya": [
+                    { name: "Jadoh", img: "/images/food/jadoh.jpeg", description: "Meat and rice dish cooked with turmeric." },
+                    { name: "Doh Nei Iong", img: "/images/food/doh.jpeg", description: "Pork cooked in black sesame paste." }
+                ],
+                "mizoram": [
+                    { name: "Bai", img: "bai.jpg", description: "Soup with bamboo shoots and pork." },
+                    { name: "Sawhchiar", img: "sawhchiar.jpg", description: "Meat and rice porridge." }
+                ],
+                "nagaland": [
+                    { name: "Smoked Pork", img: "smoked_pork.jpg", description: "Pork slow-cooked with bamboo shoots." },
+                    { name: "Akini Chokibo", img: "akini_chokibo.jpg", description: "Snail and perilla seed curry." }
+                ],
+                "odisha": [
+                    { name: "Dalma", img: "dalma.jpg", description: "Lentil dish with vegetables." },
+                    { name: "Chhena Poda", img: "chhena_poda.jpg", description: "Caramelized cottage cheese dessert." }
+                ],
+                "tamil nadu": [
+                    { name: "Dosa", img: "/images/Food/dosa.jpeg", description: "Crispy fermented rice pancake, served with chutney & sambar." },
+                    { name: "Chettinad Chicken", img: "/images/Food/chettinad.jpg", description: "Spicy chicken curry rich in flavors and aromatic spices." }
+                ],
+                "uttar pradesh": [
+                    { name: "Tehri", img: "/images/Food/petha.jpg", description: "Similar to vegetable pulao, cooked with spices, potatoes, and seasonal vegetables." },
+                    { name: "Petha", img: "/images/Food/tehri.jpg", description: " Sweet made from ash gourd, sugar, and flavored with saffron, cardamom, or nuts." }
+                ],
+                "delhi": [
+                    { name: "Sikandari Raan", img: "/images/Food/sikandari raan.jpg", description: " Featuring slow-cooked, spice-marinated lamb leg, renowned for its rich, smoky flavors." },
+                    { name: "Mutton korma", img: "/images/Food/mutton.jpeg", description: " Slow-cooked Mughlai dish with tender meat, aromatic spices, yogurt, and a flavorful, creamy gravy." },
+                    { name: "Aloo paratha", img: "/images/Food/aloo.jpeg", description: " Stuffed Indian flatbread with spiced mashed potatoes, cooked on a griddle with ghee, served hot with chutney." },
+                    { name: "veggie lo mein", img: "/images/Food/veggie.jpeg", description: " Stir-fried noodle dish with crisp vegetables, savory soy-based sauce, and aromatic seasonings, offering a delicious, satisfying bite." }
+                   
+                ],
+    
+            
+            };
+
+            if (foodData[query]) {
+                foodData[query].forEach(food => {
+                    resultsDiv.innerHTML += `
+                        <div class="food-card">
+                            <img src="${food.img}" alt="${food.name}">
+                            <h2>${food.name}</h2>
+                            <p>${food.description}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                resultsDiv.innerHTML = "<p>No results found</p>";
+            }
+        }
+
+
+        // sidebar
+        function showSidebar(){
+          const sidebar = document.querySelector('.sidebar')
+          sidebar.style.display = 'flex'
+        }
+        function hideSidebar(){
+          const sidebar = document.querySelector('.sidebar')
+          sidebar.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

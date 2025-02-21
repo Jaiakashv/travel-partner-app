@@ -1,0 +1,72 @@
+       "andhra_pradesh": [
+        { "name": "Visakhapatnam", "img": "", "description": "Beautiful coastal city with beaches.", "resorts": [
+            { "name": "Novotel Visakhapatnam", "img": "resort1.jpg", "price": "high" },
+            { "name": "Daspalla Hotel", "img": "resort2.jpg", "price": "medium" }
+        ]}
+    ],
+    "arunachal_pradesh": [
+        { "name": "Tawang", "img": "tawang.jpg", "description": "Scenic town known for monasteries and mountains.", "resorts": [
+            { "name": "Tawang Tourist Lodge", "img": "resort3.jpg", "price": "medium" },
+            { "name": "Dolma House", "img": "resort4.jpg", "price": "low" }
+        ]}
+    ],
+    "assam": [
+        { "name": "Kaziranga", "img": "kaziranga.jpg", "description": "Famous for its national park and wildlife.", "resorts": [
+            { "name": "IORA Resort", "img": "resort5.jpg", "price": "high" },
+            { "name": "Dhanshree Resort", "img": "resort6.jpg", "price": "medium" }
+        ]}
+    ],
+    "bihar": [
+        { "name": "Bodh Gaya", "img": "bodhgaya.jpg", "description": "Spiritual center for Buddhists.", "resorts": [
+            { "name": "Mahabodhi Resort", "img": "resort7.jpg", "price": "high" },
+            { "name": "Niranjana Resort", "img": "resort8.jpg", "price": "medium" }
+        ]}
+    ],
+    "chhattisgarh": [
+        { "name": "Chitrakote", "img": "chitrakote.jpg", "description": "Known for the magnificent Chitrakote Waterfalls.", "resorts": [
+            { "name": "Dandami Resort", "img": "resort9.jpg", "price": "medium" },
+            { "name": "Bastar Jungle Resort", "img": "resort10.jpg", "price": "low" }
+        ]}
+    ],
+    "goa": [
+        { "name": "Calangute", "img": "calangute.jpg", "description": "Famous beach destination.", "resorts": [
+            { "name": "Taj Holiday Village", "img": "resort11.jpg", "price": "high" },
+            { "name": "Casa De Goa", "img": "resort12.jpg", "price": "medium" }
+        ]}
+    ],
+    "gujarat": [
+        { "name": "Gir", "img": "gir.jpg", "description": "Home to the Asiatic lions.", "resorts": [
+            { "name": "Gir Jungle Lodge", "img": "resort13.jpg", "price": "high" },
+            { "name": "Lords Inn", "img": "resort14.jpg", "price": "medium" }
+        ]}
+    ],
+    "Delhi": [
+        { "name": "New Delhi", "img": "kurukshetra.jpg", "description": "Historic battlefield from Mahabharata.", "resorts": [
+            { "name": "The Imperial, New Delhi", "img": "resort25.jpg", "price": "high" },
+            { "name": "ibis hotel", "img": "resort26.jpg", "price": "medium" }
+        ]}
+    ],
+    "karnataka": [
+        { "name": "Coorg", "img": "coorg.jpg", "description": "Famous for coffee plantations and scenic views.", "resorts": [
+            { "name": "Evolve Back Coorg", "img": "resort39.jpg", "price": "high" },
+            { "name": "Coorg Cliffs Resort", "img": "resort40.jpg", "price": "medium" }
+        ]}
+    ],
+    "kerala": [
+        { "name": "Munnar", "img": "munnar.jpg", "description": "Known for lush tea gardens and misty hills.", "resorts": [
+            { "name": "Tea County", "img": "resort41.jpg", "price": "high" },
+            { "name": "Camelot Resort", "img": "resort42.jpg", "price": "medium" }
+        ]}
+    ],
+    "maharashtra": [
+        { "name": "Lonavala", "img": "lonavala.jpg", "description": "Popular hill station near Mumbai and Pune.", "resorts": [
+            { "name": "The Machan", "img": "resort43.jpg", "price": "high" },
+            { "name": "Rhythm Lonavala", "img": "resort44.jpg", "price": "medium" }
+        ]}
+    ],
+    "tamil_nadu": [
+        { "name": "Ooty", "img": "ooty.jpg", "description": "Famous hill station with tea estates.", "resorts": [
+            { "name": "Savoy - IHCL", "img": "resort45.jpg", "price": "high" },
+            { "name": "Sterling Ooty Fern Hill", "img": "resort46.jpg", "price": "medium" }
+        ]}
+    ]
